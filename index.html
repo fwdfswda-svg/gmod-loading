@@ -109,11 +109,14 @@
             const SLIDE_INTERVAL = 8000;            // интервал смены (мс) – 8 секунд
             const IMAGE_EXT = 'jpg';                // расширение (можно поменять на png)
             const IMAGE_BASE = 'slide';             // основа имени файла (slide1.jpg, slide2.jpg ...)
+            const VOLUME = 0.2;   // 25% (можно 0.2 или 0.3)
 
             // --- ЭЛЕМЕНТЫ ---
             const imgElement = document.getElementById('slideshow');
             const counterElement = document.getElementById('slideCounter');
             const audio = document.getElementById('bgMusic');
+
+            audio.volume = VOLUME;
 
             let currentSlide = 0; // 0-индекс, т.е. 0 = slide1
 
@@ -147,7 +150,6 @@
             function startMusic() {
                 audio.play().then(() => {
                     console.log('Музыка играет');
-                    audio.volume = 0.25;   // 25% громкости (можно поставить 0.2 или 0.3)
                 }).catch((err) => {
                     // Если автозапуск заблокирован – повесим обработчик на любое событие клика
                     console.log('Автозапуск заблокирован, ждём клика пользователя');
